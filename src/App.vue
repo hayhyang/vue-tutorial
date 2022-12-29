@@ -1,11 +1,18 @@
 <template>
-  <div>Hello world</div>
+  <div>{{ message }}</div>
+  <p>Count is: {{counter.count}}</p>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
+  data() {
+    return {
+      message: 'Hello world',
+      counter: {
+        count: 0
+      }
+    }
+  }
 }
 </script>
 
