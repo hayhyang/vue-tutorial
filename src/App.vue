@@ -2,6 +2,7 @@
   <div>{{ message }}</div>
   <p>Count is: {{counter.count}}</p>
   <h1 :class="titleClass">Make me red</h1>
+  <button @click="increment">{{counter.count}}</button>
 </template>
 
 <script>
@@ -13,6 +14,11 @@ export default {
         count: 0
       },
       titleClass: 'title'
+    }
+  },
+  methods: {
+    increment() {
+      this.counter.count++
     }
   }
 }
