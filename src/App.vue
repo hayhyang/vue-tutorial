@@ -14,12 +14,15 @@
     <input type="text" v-model="newTodo"/>
     <button type="submit">입력</button>
   </form>
-  <ul>
-    <li v-for="todo in todos" :key="todo.id">{{todo.text}}
+  <ul class="list">
+    <li v-for="todo in filteredTodo" :key="todo.id" :class="{done: todo.done}">
+      <input type="checkbox" v-model="todo.done"/>
+      {{todo.text}}
       <button @click="removeTodo(todo.id)">X</button>
     </li>
-
   </ul>
+
+  <button @click="hideCompleted = !hideCompleted">Hide Completed</button>
 
 </template>
 
@@ -37,11 +40,12 @@ export default {
       text: '',
       awesome: true,
       todos: [
-        {id: id++, text: 'Learn HTML'},
-        {id: id++, text: 'Learn Javascript'},
-        {id: id++, text: 'Learn Vue'},
+        {id: id++, text: 'Learn HTML', done: true},
+        {id: id++, text: 'Learn Javascript', done: true},
+        {id: id++, text: 'Learn Vue', done: false},
       ],
-      newTodo: ''
+      newTodo: '',
+      hideCompleted: false,
     }
   },
   methods: {
@@ -58,7 +62,12 @@ export default {
     removeTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id)
     }
+  },
+  computed: {
+    filteredTodo() {
+      return this.hideCompleted ? this.todos.filter(el => !el.done) : this.todos
 
+    }
   }
 }
 </script>
@@ -75,5 +84,8 @@ export default {
 
 .title {
   color: red;
+}
+.list li.done {
+  text-decoration: line-through;
 }
 </style>
