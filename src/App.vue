@@ -3,6 +3,8 @@
   <p>Count is: {{counter.count}}</p>
   <h1 :class="titleClass">Make me red</h1>
   <button @click="increment">{{counter.count}}</button>
+  <input v-model="text" placeholder="Type here" />
+  <p>{{text}}</p>
 </template>
 
 <script>
@@ -13,13 +15,14 @@ export default {
       counter: {
         count: 0
       },
-      titleClass: 'title'
+      titleClass: 'title',
+      text: ''
     }
   },
   methods: {
     increment() {
       this.counter.count++
-    }
+    },
   }
 }
 </script>
