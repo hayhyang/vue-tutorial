@@ -9,9 +9,23 @@
   <button @click="toggle">toggle</button>
   <h1 v-if="awesome">Vue is awesome!</h1>
   <h1 v-else>Oh no T.T</h1>
+
+  <form @submit.prevent="addTodo">
+    <input type="text" v-model="newTodo"/>
+    <button type="submit">입력</button>
+  </form>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">{{todo.text}}
+      <button @click="removeTodo(todo.id)">X</button>
+    </li>
+
+  </ul>
+
 </template>
 
 <script>
+
+let id = 0;
 export default {
   data() {
     return {
@@ -21,7 +35,13 @@ export default {
       },
       titleClass: 'title',
       text: '',
-      awesome: true
+      awesome: true,
+      todos: [
+        {id: id++, text: 'Learn HTML'},
+        {id: id++, text: 'Learn Javascript'},
+        {id: id++, text: 'Learn Vue'},
+      ],
+      newTodo: ''
     }
   },
   methods: {
@@ -30,7 +50,15 @@ export default {
     },
     toggle() {
       this.awesome = !this.awesome
+    },
+    addTodo() {
+      this.todos = [...this.todos, {id: id++, text: this.newTodo}];
+      this.newTodo = ''
+    },
+    removeTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id !== id)
     }
+
   }
 }
 </script>
