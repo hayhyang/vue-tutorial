@@ -30,12 +30,16 @@
   <button @click="todoId++">Fetch next todo</button>
   <p v-if="!todoData">...Loading</p>
   <pre v-else>{{todoData}}}</pre>
+  <ChildComp />
 </template>
 
 <script>
-
+import ChildComp from "./components/ChildComp.vue"
 let id = 0;
 export default {
+  components: {
+    ChildComp
+  },
   data() {
     return {
       message: 'Hello world',
