@@ -30,7 +30,8 @@
   <button @click="todoId++">Fetch next todo</button>
   <p v-if="!todoData">...Loading</p>
   <pre v-else>{{todoData}}}</pre>
-  <ChildComp :msg="greeting" />
+  <ChildComp :msg="greeting" @response="msg => childMsg = msg"/>
+  <p>{{childMsg}}</p>
 </template>
 
 <script>
@@ -59,6 +60,7 @@ export default {
       todoId: 1,
       todoData: null,
       greeting: "I'm child component",
+      childMsg: 'No child msg yet',
     }
   },
   methods: {
