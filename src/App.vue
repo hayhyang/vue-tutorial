@@ -5,6 +5,10 @@
   <button @click="increment">{{counter.count}}</button>
   <input v-model="text" placeholder="Type here" />
   <p>{{text}}</p>
+
+  <button @click="toggle">toggle</button>
+  <h1 v-if="awesome">Vue is awesome!</h1>
+  <h1 v-else>Oh no T.T</h1>
 </template>
 
 <script>
@@ -16,13 +20,17 @@ export default {
         count: 0
       },
       titleClass: 'title',
-      text: ''
+      text: '',
+      awesome: true
     }
   },
   methods: {
     increment() {
       this.counter.count++
     },
+    toggle() {
+      this.awesome = !this.awesome
+    }
   }
 }
 </script>
