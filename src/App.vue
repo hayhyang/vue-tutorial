@@ -26,6 +26,10 @@
 
   <p ref="p"></p>
 
+  <p>Todo id: {{todoId}}</p>
+  <button @click="todoId++">Fetch next todo</button>
+  <p v-if="!todoData">...Loading</p>
+  <pre v-else>{{todoData}}}</pre>
 </template>
 
 <script>
@@ -48,6 +52,8 @@ export default {
       ],
       newTodo: '',
       hideCompleted: false,
+      todoId: 1,
+      todoData: null,
     }
   },
   methods: {
@@ -63,6 +69,11 @@ export default {
     },
     removeTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    async fetchData() {
+      this.todoData = null
+      const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${this.todoId}`)
+      this.todoData = await res.json()
     }
   },
   computed: {
@@ -73,6 +84,12 @@ export default {
   },
   mounted() {
     this.$refs.p.textContent = "Mounted!"
+    this.fetchData()
+  },
+  watch: {
+    todoId() {
+      this.fetchData(0)
+    }
   }
 }
 </script>
