@@ -30,7 +30,7 @@
   <button @click="todoId++">Fetch next todo</button>
   <p v-if="!todoData">...Loading</p>
   <pre v-else>{{todoData}}}</pre>
-  <ChildComp />
+  <ChildComp :msg="greeting" />
 </template>
 
 <script>
@@ -58,6 +58,7 @@ export default {
       hideCompleted: false,
       todoId: 1,
       todoData: null,
+      greeting: "I'm child component",
     }
   },
   methods: {
