@@ -24,6 +24,8 @@
 
   <button @click="hideCompleted = !hideCompleted">Hide Completed</button>
 
+  <p ref="p"></p>
+
 </template>
 
 <script>
@@ -68,6 +70,9 @@ export default {
       return this.hideCompleted ? this.todos.filter(el => !el.done) : this.todos
 
     }
+  },
+  mounted() {
+    this.$refs.p.textContent = "Mounted!"
   }
 }
 </script>
