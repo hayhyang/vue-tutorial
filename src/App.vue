@@ -1,6 +1,7 @@
 <template>
   <div>{{ message }}</div>
   <p>Count is: {{counter.count}}</p>
+  <h1 :class="titleClass">Make me red</h1>
 </template>
 
 <script>
@@ -10,7 +11,8 @@ export default {
       message: 'Hello world',
       counter: {
         count: 0
-      }
+      },
+      titleClass: 'title'
     }
   }
 }
@@ -24,5 +26,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.title {
+  color: red;
 }
 </style>
