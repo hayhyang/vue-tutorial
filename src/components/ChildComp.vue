@@ -10,6 +10,5 @@ export default {
 </script>
 
 <template>
-<div>child component</div>
-  <p>{{msg}}</p>
+  <slot>Fallback content</slot>
 </template>

@@ -30,8 +30,9 @@
   <button @click="todoId++">Fetch next todo</button>
   <p v-if="!todoData">...Loading</p>
   <pre v-else>{{todoData}}}</pre>
-  <ChildComp :msg="greeting" @response="msg => childMsg = msg"/>
-  <p>{{childMsg}}</p>
+  <ChildComp>
+    Message: {{childMsg}}
+  </ChildComp>
 </template>
 
 <script>
